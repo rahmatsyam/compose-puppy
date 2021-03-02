@@ -1,4 +1,4 @@
-# Put title of your app here
+# Puppy List
 
 <!--- Replace <OWNER> with your Github Username and <REPOSITORY> with the name of your repository. -->
 <!--- You can find both of these in the url bar when you open your repository in github. -->
@@ -6,12 +6,13 @@
 
 
 ## :scroll: Description
-<!--- Describe your app in one or two sentences -->
+This is really amazing, to use Jetpack Compose for build app android without xml.
+I hope it can be stable version :)
 
 
 ## :bulb: Motivation and Context
-<!--- Optionally point readers to interesting parts of your submission. -->
-<!--- What are you especially proud of? -->
+This is my first time using jetpack compose. I created a simple application that displays puppies.
+Using jetpack compose really has its own challenges. The compose feature is truly amazing
 
 
 ## :camera_flash: Screenshots

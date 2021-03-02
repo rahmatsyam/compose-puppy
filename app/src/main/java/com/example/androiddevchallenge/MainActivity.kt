@@ -23,14 +23,38 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.data.puppyListStatic
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import java.lang.IllegalStateException
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                val navController = rememberNavController()
+                NavHost(navController, startDestination = "base") {
+                    composable("base") {
+                        HomePuppy(
+                            puppyList = puppyListStatic,
+                            navigateToPuppyDetail = { puppy ->
+                                navController.navigate("puppy/${puppy.title}")
+                            }
+                        )
+                    }
+
+                    composable("puppy/{title}") { backStateEntry ->
+                        val puppyType = backStateEntry.arguments?.getString("title")
+                        val puppy = puppyListStatic.find { it.title == puppyType }
+                            ?: throw IllegalStateException("puppy $puppyType not found")
+                        PuppyDetail(puppy = puppy,
+                            navigateBack = { navController.popBackStack() })
+                    }
+                }
             }
         }
     }
